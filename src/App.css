@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home .searchBox {
+  margin-bottom: 20px;
+}
+.home .search {
+  width: 80vw;
+  padding: 10px;
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid #5cc7b2;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #c2d9ff;
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 700px;
+}
+.options .add {
+  background-color: #1d42d8;
+  padding: 4px 15px;
+  border-radius: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+/* .wishList {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.wishList {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: red;
+}
+.wishList .options {
+  width: 90vw;
+}
