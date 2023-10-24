@@ -21,6 +21,10 @@
   border-radius: 8px;
   border: 1px solid #5cc7b2;
 }
+.resultTitle {
+  margin-bottom: 10px;
+  color: #2e2828;
+}
 
 .options {
   display: flex;
@@ -41,14 +45,6 @@
   color: white;
 }
 
-/* .wishList {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-} */
-
 .wishList {
   margin-top: 20px;
   display: flex;
@@ -59,4 +55,8 @@
 }
 .wishList .options {
   width: 90vw;
+}
+
+.errMsg {
+  text-align: center;
 }

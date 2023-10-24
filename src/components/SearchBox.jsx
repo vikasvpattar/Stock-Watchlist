@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Options from "./Options";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SearchBox = () => {
   // To store the values which are typed by user
@@ -9,6 +11,8 @@ const SearchBox = () => {
   const [searchResults, setSearchResults] = useState([]);
   // To store the wishlist data
   const [wishList, setWishList] = useState([]);
+  // To Store Error
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     // setting the searchResult to null
@@ -41,9 +45,13 @@ const SearchBox = () => {
                               symbol: result.data["Global Quote"]["01. symbol"],
                               price: result.data["Global Quote"]["05. price"],
                             },
-                            { ...prev },
+                            ...prev,
                           ])
                         )
+                        .catch((err) => {
+                          setErr(err);
+                          return console.log("error has occured");
+                        })
                     : "";
                 });
               }
@@ -62,6 +70,9 @@ const SearchBox = () => {
       const isPresent = wishList.some((obj) => obj.symbol === symbol);
       if (!isPresent) {
         setWishList((prevData) => [data, ...prevData]);
+        toast.success("added to wishlist successfully..");
+      } else {
+        toast.warning("It's already in your wishList");
       }
     }
   };
@@ -79,18 +90,32 @@ const SearchBox = () => {
           type="text"
           value={search}
           className="search"
-          placeholder="Search the stock price"
+          placeholder="Search the stock prices here ...."
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      {searchResults.map((result) => {
-        <Options
-          key={result.symbol}
-          symbol={result.symbol}
-          price={result.price}
-          handleClick={handleClick}
-        />;
-      })}
+      <div className="resultTitle">
+        <h4>Results :-</h4>
+      </div>
+      {searchResults &&
+        searchResults.map((res, index) => (
+          <Options
+            key={index}
+            myKey={index}
+            symbol={res.symbol}
+            price={res.price}
+            handleClick={handleClick}
+          />
+        ))}
+
+      {err && (
+        <div className="errMsg">
+          <h2>Oops Error has occurred</h2>
+        </div>
+      )}
+
+      <ToastContainer />
+
       {/* dummy data to check the functionality if the api does't work  */}
       {/* <Options symbol={"tata"} price={1034} handleClick={handleClick} />
       <Options symbol={"jio"} price={102} handleClick={handleClick} />
